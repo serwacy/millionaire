@@ -17,12 +17,4 @@ public class QuestionService {
    private QuestionService(final QuestionRepository questionRepository){
       this.questionRepository = questionRepository;
    }
-
-   public int getNumberOfQuestions() {
-      return questionRepository.getNumberOfQuestions();
-   }
-
-   public Question getQuestionByNumber(int number) {
-      return questionRepository.getQuestionByNumber(number - 1);
-   }
 }

@@ -5,7 +5,11 @@
 <div class="container">
 
    Hej, ${sessionScope.game.playerName}. Oto kolejne pytanie ! <br />
-   ${requestScope.question}
+   ${requestScope.question.category} <br />
+   ${requestScope.question.correctAnswer} <br />
+   ${requestScope.question.difficulty} <br />
+   ${requestScope.question.question} <br />
+   ${requestScope.question.type} <br />
 
 </div>
 

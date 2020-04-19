@@ -4,6 +4,7 @@ import com.sda.model.Game;
 import com.sda.model.Question;
 import com.sda.service.JsonReader;
 import com.sda.service.QuestionService;
+import org.codehaus.jackson.map.ObjectMapper;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,11 +23,15 @@ public class GameController extends HttpServlet {
    protected void doGet(final HttpServletRequest httpServletRequest, final HttpServletResponse httpServletResponse) throws ServletException, IOException {
       final HttpSession session = httpServletRequest.getSession();
       final Game game = (Game) session.getAttribute("game");
-//      final Question question = questionService.getQuestionByNumber(game.getQuestionNumber());
 
-      final String question = JsonReader.readJsonFromUrl("https://opentdb.com/api.php?amount=1&difficulty=easy&type=multiple").toString();
+      final ObjectMapper mapper = new ObjectMapper();
+      String question = JsonReader.readJsonFromUrl("https://opentdb.com/api.php?amount=1&difficulty=easy&type=multiple").toString();
+      question = question.replace("{\"response_code\":0,\"results\":[", "");
+      question = question.substring(0, question.length() - 2);
 
-      httpServletRequest.setAttribute("question", question);
+      final Question question1 = mapper.readValue(question, Question.class);
+
+      httpServletRequest.setAttribute("question", question1);
       httpServletRequest.getRequestDispatcher("/play.jsp").forward(httpServletRequest, httpServletResponse);
    }
 }
