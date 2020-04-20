@@ -13,5 +13,6 @@ public class Game {
    private String playerName;
    private int questionNumber;
    private List<Lifeline> lifelines;
-   private boolean isActive;
+   private boolean active;
+   private QuestionLists questionLists;
 }

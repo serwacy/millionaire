@@ -2,5 +2,5 @@ package com.sda.model;
 
 public enum Lifeline {
    AUDIENCE,
-   ON_HALF
+   FIFTY_FIFTY
 }

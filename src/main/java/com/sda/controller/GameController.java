@@ -18,8 +18,7 @@ public class GameController extends HttpServlet {
    @Override
    protected void doGet(final HttpServletRequest httpServletRequest, final HttpServletResponse httpServletResponse) throws ServletException, IOException {
       final Game game = (Game) httpServletRequest.getSession().getAttribute("game");
-      final Question question =
-              questionService.getQuestion("https://opentdb.com/api.php?amount=1&difficulty=easy&type=multiple");
+      final Question question = game.getQuestionLists().getEasyQuestions().get(game.getQuestionNumber()-1);
 
       httpServletRequest.setAttribute("question", question);
       httpServletRequest.getRequestDispatcher("/play.jsp").forward(httpServletRequest, httpServletResponse);

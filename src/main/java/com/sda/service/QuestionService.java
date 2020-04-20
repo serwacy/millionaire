@@ -4,6 +4,7 @@ import com.sda.model.Question;
 import com.sda.repository.QuestionRepository;
 
 import java.io.IOException;
+import java.util.List;
 
 public class QuestionService {
    private static QuestionService questionService;
@@ -20,7 +21,7 @@ public class QuestionService {
       this.questionRepository = questionRepository;
    }
 
-   public Question getQuestion(final String urlAsString) throws IOException {
-      return questionRepository.getQuestion(urlAsString);
+   public List<Question> initQuestions(final String urlAsString) throws IOException {
+      return questionRepository.initQuestions(urlAsString);
    }
 }
