@@ -12,6 +12,7 @@ import java.io.IOException;
 
 @WebServlet(name = "StartController", value = "/start")
 public class StartController extends HttpServlet {
+
    @Override
    protected void doGet(final HttpServletRequest httpServletRequest, final HttpServletResponse httpServletResponse) throws ServletException, IOException {
       httpServletRequest.getRequestDispatcher("/start.jsp").forward(httpServletRequest, httpServletResponse);

@@ -7,9 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.codehaus.jackson.annotate.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Data
 @AllArgsConstructor
@@ -25,7 +23,6 @@ import java.util.Map;
         "incorrect_answers"
 })
 public class Question {
-
    @JsonProperty("category")
    public String category;
    @JsonProperty("type")
