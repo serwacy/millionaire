@@ -3,15 +3,38 @@
 <jsp:include page="header.jsp"/>
 
 <div class="container">
-
-   Hej, ${sessionScope.game.playerName}. Oto kolejne pytanie ! <br />
-   ${requestScope.question.category} <br />
-   ${requestScope.question.correctAnswer} <br />
-   ${requestScope.question.difficulty} <br />
-   ${requestScope.question.question} <br />
-   ${requestScope.question.type} <br />
-
+   <h3>${sessionScope.game.playerName}, here's question for you:</h3>
+   <div class="row">
+      <div class="thumbnail col-sm-8 col-md-12">
+         <h3>Question ${sessionScope.game.questionNumber}: </h3>
+      </div>
+   </div>
+   <div class="row">
+      <div class="btn-group-toggle btn-group-vertical col-sm-8 col-md-12" data-toggle="buttons" i>
+         <label class="btn btn-unpressed btn-block btn-lg">
+            <input type="radio" name="answers" id="answerA" autocomplete="off"> Answer A
+         </label>
+         <label class="btn btn-unpressed btn-block btn-lg">
+            <input type="radio" name="answers" id="AnswerB" autocomplete="off"> Answer B
+         </label>
+         <label class="btn btn-unpressed btn-block btn-lg">
+            <input type="radio" name="answers" id="AnswerC" autocomplete="off"> Answer C
+         </label>
+         <label class="btn btn-unpressed btn-block btn-lg">
+            <input type="radio" name="answers" id="AnswerD" autocomplete="off"> Answer D
+         </label>
+      </div>
+   </div>
 </div>
+
+<script>
+   $(document).ready(function () {
+      $('label').click(function () {
+         $(this).addClass('btn-pressed').removeClass('btn-unpressed')
+             .siblings().removeClass('btn-pressed').addClass('btn-unpressed');
+      });
+   });
+</script>
 
 </body>
 </html>

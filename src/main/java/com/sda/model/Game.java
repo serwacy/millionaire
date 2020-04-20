@@ -15,4 +15,6 @@ public class Game {
    private List<Lifeline> lifelines;
    private boolean active;
    private QuestionLists questionLists;
+   private int prize;
+   private int guaranteedPrize;
 }

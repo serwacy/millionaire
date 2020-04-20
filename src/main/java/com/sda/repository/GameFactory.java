@@ -17,6 +17,8 @@ public class GameFactory {
               .active(true)
               .lifelines(Arrays.asList(Lifeline.AUDIENCE, Lifeline.FIFTY_FIFTY))
               .questionLists(initiateQuestionLists())
+              .prize(0)
+              .guaranteedPrize(0)
               .build();
    }
 
