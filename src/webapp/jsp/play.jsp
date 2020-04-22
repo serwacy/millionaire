@@ -12,19 +12,20 @@
    <div class="row">
       <div class="btn-group-toggle btn-group-vertical col-sm-8 col-md-12" data-toggle="buttons">
          <label class="btn btn-unpressed btn-block btn-lg">
-            <input type="radio" name="answers" id="answerA" autocomplete="off"> A: ${requestScope.question.answerA}
+            <input type="radio" name="answers" id="answerA" autocomplete="off"> A: ${requestScope.question.answers.get(0)}
          </label>
          <label class="btn btn-unpressed btn-block btn-lg">
-            <input type="radio" name="answers" id="AnswerB" autocomplete="off"> B: ${requestScope.question.answerB}
+            <input type="radio" name="answers" id="AnswerB" autocomplete="off"> B: ${requestScope.question.answers.get(1)}
          </label>
          <label class="btn btn-unpressed btn-block btn-lg">
-            <input type="radio" name="answers" id="AnswerC" autocomplete="off"> C: ${requestScope.question.answerC}
+            <input type="radio" name="answers" id="AnswerC" autocomplete="off"> C: ${requestScope.question.answers.get(2)}
          </label>
          <label class="btn btn-unpressed btn-block btn-lg">
-            <input type="radio" name="answers" id="AnswerD" autocomplete="off"> D: ${requestScope.question.answerD}
+            <input type="radio" name="answers" id="AnswerD" autocomplete="off"> D: ${requestScope.question.answers.get(3)}
          </label>
       </div>
    </div>
+   Correct answer number (test): ${requestScope.question.correctAnswerNumber}
 </div>
 
 <script>

@@ -5,15 +5,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class ConvertedQuestion {
    private String questionContent;
-   private String answerA;
-   private String answerB;
-   private String answerC;
-   private String answerD;
-   private String correctAnswerLetter;
+   private List<String> answers;
+   private int correctAnswerNumber;
 }

@@ -5,6 +5,8 @@ import com.sda.model.Question;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -19,44 +21,30 @@ public class QuestionAdapter {
    }
 
    public ConvertedQuestion getAndAdapt(final Question question) {
-      final ConvertedQuestion convertedQuestion = new ConvertedQuestion();
-      convertedQuestion.setQuestionContent(question.getQuestion());
-      organizeAnswers(question, convertedQuestion);
-      return convertedQuestion;
+      final int correctAnswerNumber = correctAnswerNumberPicker();
+      return ConvertedQuestion.builder()
+              .questionContent(question.getQuestion())
+              .answers(organizeAnswers(question, correctAnswerNumber))
+              .correctAnswerNumber(correctAnswerNumber)
+              .build();
    }
 
-   private void organizeAnswers(final Question question, final ConvertedQuestion convertedQuestion){
+   private int correctAnswerNumberPicker(){
       final Random random = new Random();
-      final int picker = random.nextInt(4);
-      switch (picker){
-         case 0:
-            convertedQuestion.setCorrectAnswerLetter("a");
-            convertedQuestion.setAnswerA(question.getCorrectAnswer());
-            convertedQuestion.setAnswerB(question.getIncorrectAnswers().get(0));
-            convertedQuestion.setAnswerC(question.getIncorrectAnswers().get(1));
-            convertedQuestion.setAnswerD(question.getIncorrectAnswers().get(2));
-            break;
-         case 1:
-            convertedQuestion.setCorrectAnswerLetter("b");
-            convertedQuestion.setAnswerA(question.getIncorrectAnswers().get(0));
-            convertedQuestion.setAnswerB(question.getCorrectAnswer());
-            convertedQuestion.setAnswerC(question.getIncorrectAnswers().get(1));
-            convertedQuestion.setAnswerD(question.getIncorrectAnswers().get(2));
-            break;
-         case 2:
-            convertedQuestion.setCorrectAnswerLetter("c");
-            convertedQuestion.setAnswerA(question.getIncorrectAnswers().get(0));
-            convertedQuestion.setAnswerB(question.getIncorrectAnswers().get(1));
-            convertedQuestion.setAnswerC(question.getCorrectAnswer());
-            convertedQuestion.setAnswerD(question.getIncorrectAnswers().get(2));
-            break;
-         case 3:
-            convertedQuestion.setCorrectAnswerLetter("d");
-            convertedQuestion.setAnswerA(question.getIncorrectAnswers().get(0));
-            convertedQuestion.setAnswerB(question.getIncorrectAnswers().get(1));
-            convertedQuestion.setAnswerC(question.getIncorrectAnswers().get(2));
-            convertedQuestion.setAnswerD(question.getCorrectAnswer());
-            break;
+      return random.nextInt(4);
+   }
+
+   private List<String> organizeAnswers (final Question question, final int correctAnswerNumber){
+      final List<String> answers = new ArrayList<>();
+      int incorrectAnswersMarker = 0;
+      for (int idx = 0; idx < 4; idx++) {
+         if(idx == correctAnswerNumber){
+            answers.add(question.correctAnswer);
+         } else {
+            answers.add(question.incorrectAnswers.get(incorrectAnswersMarker));
+            incorrectAnswersMarker++;
+         }
       }
+      return answers;
    }
 }
