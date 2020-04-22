@@ -3,29 +3,70 @@
 <jsp:include page="header.jsp"/>
 
 <div class="container">
+   <nav class="navbar navbar-default">
+      <div class="container-fluid">
+         <ul class="nav navbar-nav">
+            <li class="dropdown">
+               <a class="dropdown-toggle" data-toggle="dropdown" href="#">Prizes
+                  <span class="caret"></span></a>
+               <ul class="dropdown-menu">
+                  <c:forEach items="${requestScope.allPrizes}" var="prize">
+                     <c:if test="${prize==1000 || prize==40000 || prize==1000000}">
+                        <c:if test="${prize<requestScope.nextPrize}">
+                           <li class="answered"><a class="isDisabled" href="#"><strong>${prize}</strong></a></li>
+                        </c:if>
+                        <c:if test="${prize>=requestScope.nextPrize}">
+                           <li class="unanswered"><a href="#"><strong>${prize}</strong></a></li>
+                        </c:if>
+                     </c:if>
+                     <c:if test="${prize!=1000 && prize!=40000 && prize!=1000000}">
+                        <c:if test="${prize<requestScope.nextPrize}">
+                           <li class="answered"><a class="isDisabled" href="#">${prize}</a></li>
+                        </c:if>
+                        <c:if test="${prize>=requestScope.nextPrize}">
+                           <li class="unanswered"><a href="#">${prize}</a></li>
+                        </c:if>
+                     </c:if>
+                  </c:forEach>
+               </ul>
+            </li>
+            <li><p class="navbar-text">Question Prize: ${requestScope.nextPrize}</p></li>
+            <li><p class="navbar-text">Guaranteed Prize: ${sessionScope.game.guaranteedPrize}</p></li>
+         </ul>
+         <button class="btn btn-danger navbar-btn navbar-right">Lifeline A</button>
+         <button class="btn btn-danger navbar-btn navbar-right">Lifeline B</button>
+      </div>
+   </nav>
+
    <h3>${sessionScope.game.playerName}, here's question for you:</h3>
    <div class="row">
       <div class="thumbnail col-sm-8 col-md-12">
          <h3>Question ${sessionScope.game.questionNumber}: ${requestScope.question.questionContent}</h3>
       </div>
    </div>
-   <div class="row">
-      <div class="btn-group-toggle btn-group-vertical col-sm-8 col-md-12" data-toggle="buttons">
-         <label class="btn btn-unpressed btn-block btn-lg">
-            <input type="radio" name="answers" id="answerA" autocomplete="off"> A: ${requestScope.question.answers.get(0)}
-         </label>
-         <label class="btn btn-unpressed btn-block btn-lg">
-            <input type="radio" name="answers" id="AnswerB" autocomplete="off"> B: ${requestScope.question.answers.get(1)}
-         </label>
-         <label class="btn btn-unpressed btn-block btn-lg">
-            <input type="radio" name="answers" id="AnswerC" autocomplete="off"> C: ${requestScope.question.answers.get(2)}
-         </label>
-         <label class="btn btn-unpressed btn-block btn-lg">
-            <input type="radio" name="answers" id="AnswerD" autocomplete="off"> D: ${requestScope.question.answers.get(3)}
-         </label>
+   <form action="/play" method="post">
+      <div class="row">
+         <div class="btn-group-toggle btn-group-vertical col-sm-8 col-md-12" data-toggle="buttons">
+            <label class="btn btn-unpressed btn-block btn-lg" for="0">
+               <input type="radio" name="answer" id="0" value="0" autocomplete="off">
+               A: ${requestScope.question.answers.get(0)}
+            </label>
+            <label class="btn btn-unpressed btn-block btn-lg" for="1">
+               <input type="radio" name="answer" id="1" value="1" autocomplete="off">
+               B: ${requestScope.question.answers.get(1)}
+            </label>
+            <label class="btn btn-unpressed btn-block btn-lg" for="2">
+               <input type="radio" name="answer" id="2" value="2" autocomplete="off">
+               C: ${requestScope.question.answers.get(2)}
+            </label>
+            <label class="btn btn-unpressed btn-block btn-lg" for="3">
+               <input type="radio" name="answer" id="3" value="3" autocomplete="off">
+               D: ${requestScope.question.answers.get(3)}
+            </label>
+         </div>
       </div>
-   </div>
-   Correct answer number (test): ${requestScope.question.correctAnswerNumber}
+      <button type="submit" class="btn btn-primary">Submit Answer</button>
+   </form>
 </div>
 
 <script>

@@ -20,6 +20,16 @@
          color: #000000;
          border-color: black;
       }
+      .unanswered {
+         background-color: #2961d9;
+      }
+      .answered {
+         background-color: #d4a120;
+      }
+      .isDisabled {
+         cursor: not-allowed;
+      }
+
    </style>
 </head>
 

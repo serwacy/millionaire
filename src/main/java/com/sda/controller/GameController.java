@@ -2,6 +2,7 @@ package com.sda.controller;
 
 import com.sda.model.ConvertedQuestion;
 import com.sda.model.Game;
+import com.sda.model.Prizes;
 import com.sda.model.Question;
 import com.sda.service.QuestionService;
 
@@ -21,8 +22,33 @@ public class GameController extends HttpServlet {
       final Game game = (Game) httpServletRequest.getSession().getAttribute("game");
       final Question question = questionService.questionPicker(game);
       final ConvertedQuestion convertedQuestion = questionService.adaptQuestion(question);
+      game.setProcessedQuestion(convertedQuestion);
 
+      httpServletRequest.setAttribute("nextPrize", Prizes.PRIZES.getPrize(game.getQuestionNumber()));
+      httpServletRequest.setAttribute("allPrizes", Prizes.PRIZES.getAllPrizes());
       httpServletRequest.setAttribute("question", convertedQuestion);
       httpServletRequest.getRequestDispatcher("/play.jsp").forward(httpServletRequest, httpServletResponse);
+   }
+
+   @Override
+   protected void doPost(final HttpServletRequest httpServletRequest, final HttpServletResponse httpServletResponse) throws ServletException, IOException {
+      final Game game = (Game) httpServletRequest.getSession().getAttribute("game");
+      if(Integer.parseInt(httpServletRequest.getParameter("answer")) == game.getProcessedQuestion().getCorrectAnswerNumber()){
+         game.setQuestionNumber(game.getQuestionNumber()+1);
+         checkGuaranteedPrize(game);
+         httpServletResponse.sendRedirect("/play");
+      } else {
+         httpServletResponse.sendRedirect("/home");
+      }
+   }
+
+   private void checkGuaranteedPrize(final Game game){
+      if (game.getQuestionNumber() > 12){
+         game.setGuaranteedPrize(Prizes.GUARANTEED_PRIZES.getPrize(3));
+      } else if (game.getQuestionNumber() > 7){
+         game.setGuaranteedPrize(Prizes.GUARANTEED_PRIZES.getPrize(2));
+      } else if (game.getQuestionNumber() > 2){
+         game.setGuaranteedPrize(Prizes.GUARANTEED_PRIZES.getPrize(1));
+      }
    }
 }

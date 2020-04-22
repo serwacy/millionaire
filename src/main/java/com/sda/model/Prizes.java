@@ -16,4 +16,8 @@ public enum Prizes {
    public int getPrize(final int questionNumber) {
       return prizes.get(questionNumber - 1);
    }
+
+   public List<Integer> getAllPrizes(){
+      return prizes;
+   }
 }
