@@ -1,5 +1,6 @@
 package com.sda.controller;
 
+import com.sda.model.ConvertedQuestion;
 import com.sda.model.Game;
 import com.sda.model.Question;
 import com.sda.service.QuestionService;
@@ -18,9 +19,10 @@ public class GameController extends HttpServlet {
    @Override
    protected void doGet(final HttpServletRequest httpServletRequest, final HttpServletResponse httpServletResponse) throws ServletException, IOException {
       final Game game = (Game) httpServletRequest.getSession().getAttribute("game");
-      final Question question = game.getQuestionLists().getEasyQuestions().get(game.getQuestionNumber()-1);
+      final Question question = questionService.questionPicker(game);
+      final ConvertedQuestion convertedQuestion = questionService.adaptQuestion(question);
 
-      httpServletRequest.setAttribute("question", question);
+      httpServletRequest.setAttribute("question", convertedQuestion);
       httpServletRequest.getRequestDispatcher("/play.jsp").forward(httpServletRequest, httpServletResponse);
    }
 }

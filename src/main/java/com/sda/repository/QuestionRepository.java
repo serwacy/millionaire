@@ -2,6 +2,8 @@ package com.sda.repository;
 
 import com.sda.model.Question;
 import com.sda.utils.JsonReader;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONObject;
 
@@ -9,6 +11,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class QuestionRepository {
    private static QuestionRepository questionRepository;
 
@@ -18,8 +21,6 @@ public class QuestionRepository {
       }
       return questionRepository;
    }
-
-   private QuestionRepository(){}
 
    public List<Question> initQuestions(final String urlAsString) throws IOException {
       final ObjectMapper mapper = new ObjectMapper();
