@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(name = "GameController", value = "/play")
@@ -19,6 +20,10 @@ public class GameController extends HttpServlet {
 
    @Override
    protected void doGet(final HttpServletRequest httpServletRequest, final HttpServletResponse httpServletResponse) throws ServletException, IOException {
+      if(httpServletRequest.getSession().getAttribute("ended").equals(true)){
+         httpServletResponse.sendRedirect("/home");
+         return;
+      }
       final Game game = (Game) httpServletRequest.getSession().getAttribute("game");
       final Question question = questionService.questionPicker(game);
       final ConvertedQuestion convertedQuestion = questionService.adaptQuestion(question);
@@ -34,11 +39,13 @@ public class GameController extends HttpServlet {
    protected void doPost(final HttpServletRequest httpServletRequest, final HttpServletResponse httpServletResponse) throws ServletException, IOException {
       final Game game = (Game) httpServletRequest.getSession().getAttribute("game");
       if(Integer.parseInt(httpServletRequest.getParameter("answer")) == game.getProcessedQuestion().getCorrectAnswerNumber()){
+         game.setCurrentPrize(Prizes.PRIZES.getPrize(game.getQuestionNumber()));
          game.setQuestionNumber(game.getQuestionNumber()+1);
          checkGuaranteedPrize(game);
          httpServletResponse.sendRedirect("/play");
       } else {
-         httpServletResponse.sendRedirect("/home");
+         game.setCurrentPrize(game.getGuaranteedPrize());
+         httpServletResponse.sendRedirect("/end");
       }
    }
 

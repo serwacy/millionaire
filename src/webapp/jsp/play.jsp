@@ -30,7 +30,8 @@
                   </c:forEach>
                </ul>
             </li>
-            <li><p class="navbar-text">Question Prize: ${requestScope.nextPrize}</p></li>
+            <li><p class="navbar-text">You are playing for: ${requestScope.nextPrize}</p></li>
+            <li><p class="navbar-text">Current Prize: ${sessionScope.game.currentPrize}</p></li>
             <li><p class="navbar-text">Guaranteed Prize: ${sessionScope.game.guaranteedPrize}</p></li>
          </ul>
          <button class="btn btn-danger navbar-btn navbar-right">Lifeline A</button>
@@ -65,7 +66,14 @@
             </label>
          </div>
       </div>
-      <button type="submit" class="btn btn-primary">Submit Answer</button>
+      <div class="btn-group">
+         <button type="submit" class="btn btn-primary btn-submit" disabled>Submit Answer</button>
+         <a href="#" class="btn btn-danger" role="button"
+            data-placement="bottom" data-trigger="focus"
+            data-toggle="popover" title="Are you sure you want to forfeit"
+            data-content="<a href='/end'>YES</a>">Forfeit
+         </a>
+      </div>
    </form>
 </div>
 
@@ -75,6 +83,14 @@
          $(this).addClass('btn-pressed').removeClass('btn-unpressed')
              .siblings().removeClass('btn-pressed').addClass('btn-unpressed');
       });
+   });
+   $(document).ready(function(){
+      $(".btn-unpressed").click(function(){
+         $(".btn-submit").prop('disabled', false);
+      });
+   });
+   $(document).ready(function(){
+      $('[data-toggle="popover"]').popover({html:true, container: 'body'});
    });
 </script>
 
