@@ -1,9 +1,6 @@
 package com.sda.controller;
 
-import com.sda.service.QuestionService;
-
 import java.io.IOException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,9 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "HomePageController", value = "/")
 public class HomePageController extends HttpServlet {
-  @Override
-  protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    req.setAttribute("numberOfQuestions", "infinite");
-    req.getRequestDispatcher("/home.jsp").forward(req, resp);
-  }
+   @Override
+   protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
+      httpServletRequest.setAttribute("numberOfQuestions", "infinite");
+      httpServletRequest.getRequestDispatcher("/home.jsp").forward(httpServletRequest, httpServletResponse);
+   }
 }

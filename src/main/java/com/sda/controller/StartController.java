@@ -24,6 +24,6 @@ public class StartController extends HttpServlet {
       final Game game = GameFactory.create(playerName);
       httpServletRequest.getSession().setAttribute("game", game);
       httpServletRequest.getSession().setAttribute("ended", false);
-      httpServletResponse.sendRedirect("/play");
+      httpServletResponse.sendRedirect("/game/play");
    }
 }

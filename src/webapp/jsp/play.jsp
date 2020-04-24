@@ -34,8 +34,22 @@
             <li><p class="navbar-text">Current Prize: ${sessionScope.game.currentPrize}</p></li>
             <li><p class="navbar-text">Guaranteed Prize: ${sessionScope.game.guaranteedPrize}</p></li>
          </ul>
-         <button class="btn btn-danger navbar-btn navbar-right">Lifeline A</button>
-         <button class="btn btn-danger navbar-btn navbar-right">Lifeline B</button>
+         <c:forEach items="${sessionScope.game.lifelines}" var="lifeline">
+            <c:if test="${lifeline.toString()=='FIFTY_FIFTY'}">
+               <a href="#" class="btn btn-danger navbar-btn navbar-right" role="button"
+                  data-placement="bottom" data-trigger="focus"
+                  data-toggle="popover" title="Are you sure you want to use this lifeline"
+                  data-content="<a href='/game/lifelines?type=fifty-fifty'>YES</a>">FIFTY-FIFTY
+               </a>
+            </c:if>
+            <c:if test="${lifeline.toString()=='AUDIENCE'}">
+               <a href="#" class="btn btn-danger navbar-btn navbar-right" role="button"
+                  data-placement="bottom" data-trigger="focus"
+                  data-toggle="popover" title="Are you sure you want to use this lifeline"
+                  data-content="<a href='/game/lifelines?type=audience'>YES</a>">AUDIENCE
+               </a>
+            </c:if>
+         </c:forEach>
       </div>
    </nav>
 
@@ -45,25 +59,57 @@
          <h3>Question ${sessionScope.game.questionNumber}: ${requestScope.question.questionContent}</h3>
       </div>
    </div>
-   <form action="/play" method="post">
+   <form action="/game/play" method="post">
       <div class="row">
          <div class="btn-group-toggle btn-group-vertical col-sm-8 col-md-12" data-toggle="buttons">
-            <label class="btn btn-unpressed btn-block btn-lg" for="0">
-               <input type="radio" name="answer" id="0" value="0" autocomplete="off">
-               A: ${requestScope.question.answers.get(0)}
-            </label>
-            <label class="btn btn-unpressed btn-block btn-lg" for="1">
-               <input type="radio" name="answer" id="1" value="1" autocomplete="off">
-               B: ${requestScope.question.answers.get(1)}
-            </label>
-            <label class="btn btn-unpressed btn-block btn-lg" for="2">
-               <input type="radio" name="answer" id="2" value="2" autocomplete="off">
-               C: ${requestScope.question.answers.get(2)}
-            </label>
-            <label class="btn btn-unpressed btn-block btn-lg" for="3">
-               <input type="radio" name="answer" id="3" value="3" autocomplete="off">
-               D: ${requestScope.question.answers.get(3)}
-            </label>
+            <c:if test="${requestScope.question.answers.get(0).equals('')}">
+               <label class="btn btn-unpressed btn-block btn-lg disabled" for="0">
+                  <input type="radio" name="answer" id="0" value="0" autocomplete="off">
+                  A: ${requestScope.question.answers.get(0)}
+               </label>
+            </c:if>
+            <c:if test="${!requestScope.question.answers.get(0).equals('')}">
+               <label class="btn btn-unpressed btn-block btn-lg" for="0">
+                  <input type="radio" name="answer" id="0" value="0" autocomplete="off">
+                  A: ${requestScope.question.answers.get(0)}
+               </label>
+            </c:if>
+            <c:if test="${requestScope.question.answers.get(1).equals('')}">
+               <label class="btn btn-unpressed btn-block btn-lg disabled" for="1">
+                  <input type="radio" name="answer" id="1" value="1" autocomplete="off">
+                  B: ${requestScope.question.answers.get(1)}
+               </label>
+            </c:if>
+            <c:if test="${!requestScope.question.answers.get(1).equals('')}">
+               <label class="btn btn-unpressed btn-block btn-lg" for="1">
+                  <input type="radio" name="answer" id="1" value="1" autocomplete="off">
+                  B: ${requestScope.question.answers.get(1)}
+               </label>
+            </c:if>
+            <c:if test="${requestScope.question.answers.get(2).equals('')}">
+               <label class="btn btn-unpressed btn-block btn-lg disabled" for="2">
+                  <input type="radio" name="answer" id="2" value="2" autocomplete="off">
+                  C: ${requestScope.question.answers.get(2)}
+               </label>
+            </c:if>
+            <c:if test="${!requestScope.question.answers.get(2).equals('')}">
+               <label class="btn btn-unpressed btn-block btn-lg" for="2">
+                  <input type="radio" name="answer" id="2" value="2" autocomplete="off">
+                  C: ${requestScope.question.answers.get(2)}
+               </label>
+            </c:if>
+            <c:if test="${requestScope.question.answers.get(3).equals('')}">
+               <label class="btn btn-unpressed btn-block btn-lg disabled" for="3">
+                  <input type="radio" name="answer" id="3" value="3" autocomplete="off">
+                  D: ${requestScope.question.answers.get(3)}
+               </label>
+            </c:if>
+            <c:if test="${!requestScope.question.answers.get(3).equals('')}">
+               <label class="btn btn-unpressed btn-block btn-lg" for="3">
+                  <input type="radio" name="answer" id="3" value="3" autocomplete="off">
+                  D: ${requestScope.question.answers.get(3)}
+               </label>
+            </c:if>
          </div>
       </div>
       <div class="btn-group">

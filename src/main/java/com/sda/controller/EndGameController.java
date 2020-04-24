@@ -15,7 +15,7 @@ public class EndGameController extends HttpServlet {
    protected void doGet(final HttpServletRequest httpServletRequest, final HttpServletResponse httpServletResponse) throws ServletException, IOException {
       final Game game = (Game) httpServletRequest.getSession().getAttribute("game");
       httpServletRequest.setAttribute("prize", game.getCurrentPrize());
-      httpServletRequest.getSession().setAttribute("ended", true);
+      httpServletRequest.getSession().invalidate();
       httpServletRequest.getRequestDispatcher("/end.jsp").forward(httpServletRequest, httpServletResponse);
    }
 }

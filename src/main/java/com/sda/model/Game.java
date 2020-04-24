@@ -18,4 +18,5 @@ public class Game {
    private int currentPrize;
    private int guaranteedPrize;
    private ConvertedQuestion processedQuestion;
+   private boolean usedFiftyFifty;
 }

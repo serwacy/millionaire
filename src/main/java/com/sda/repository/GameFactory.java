@@ -5,6 +5,7 @@ import com.sda.service.QuestionService;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class GameFactory {
@@ -15,10 +16,11 @@ public class GameFactory {
               .playerName(playerName)
               .questionNumber(1)
               .active(true)
-              .lifelines(Arrays.asList(Lifeline.AUDIENCE, Lifeline.FIFTY_FIFTY))
+              .lifelines(new LinkedList<>(Arrays.asList(Lifeline.FIFTY_FIFTY, Lifeline.AUDIENCE)))
               .questionLists(initiateQuestionLists())
               .currentPrize(0)
               .guaranteedPrize(0)
+              .usedFiftyFifty(false)
               .build();
    }
 

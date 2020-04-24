@@ -42,7 +42,7 @@
       <ul class="nav navbar-nav">
          <li><a href="/best">Best scores</a></li>
          <c:if test="${sessionScope.game.active}">
-            <li><a href="/continue">Continue</a></li>
+            <li><a href="/game/play">Continue</a></li>
             <li><a href="/start">New game</a></li>
          </c:if>
          <c:if test="${!sessionScope.game.active}">
