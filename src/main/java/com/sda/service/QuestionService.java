@@ -30,16 +30,6 @@ public class QuestionService {
       return questionRepository.initQuestions(urlAsString);
    }
 
-   public Question questionPicker(final Game game){
-      if(game.getQuestionNumber() < 5){
-         return game.getQuestionLists().getEasyQuestions().get(game.getQuestionNumber()-1);
-      }
-      if(game.getQuestionNumber() < 9){
-         return game.getQuestionLists().getMediumQuestions().get(game.getQuestionNumber()-5);
-      }
-      return game.getQuestionLists().getHardQuestions().get(game.getQuestionNumber()-9);
-   }
-
    public ConvertedQuestion adaptQuestion(final Question question){
       return questionAdapter.getAndAdapt(question);
    }

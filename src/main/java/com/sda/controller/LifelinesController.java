@@ -19,8 +19,7 @@ public class LifelinesController extends HttpServlet {
       final Game game = (Game) httpServletRequest.getSession().getAttribute("game");
       if(type.equals("fifty-fifty")){
          game.getLifelines().remove(Lifeline.FIFTY_FIFTY);
-         LifelineUtils.useFiftyFiftyLifeline(game.getProcessedQuestion());
-         game.setUsedFiftyFifty(true);
+         LifelineUtils.useFiftyFiftyLifeline(game.getQuestionsList().get(game.getQuestionNumber()-1));
       }
       if(type.equals("audience")){
          game.getLifelines().remove(Lifeline.AUDIENCE);

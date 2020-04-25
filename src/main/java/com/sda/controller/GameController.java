@@ -1,9 +1,7 @@
 package com.sda.controller;
 
-import com.sda.model.ConvertedQuestion;
 import com.sda.model.Game;
 import com.sda.model.Prizes;
-import com.sda.model.Question;
 import com.sda.service.QuestionService;
 
 import javax.servlet.ServletException;
@@ -20,24 +18,17 @@ public class GameController extends HttpServlet {
    @Override
    protected void doGet(final HttpServletRequest httpServletRequest, final HttpServletResponse httpServletResponse) throws ServletException, IOException {
       final Game game = (Game) httpServletRequest.getSession().getAttribute("game");
-      if(!game.isUsedFiftyFifty()) {
-         final Question question = questionService.questionPicker(game);
-         final ConvertedQuestion convertedQuestion = questionService.adaptQuestion(question);
-         game.setProcessedQuestion(convertedQuestion);
-      } else {
-         game.setUsedFiftyFifty(false);
-      }
 
       httpServletRequest.setAttribute("nextPrize", Prizes.PRIZES.getPrize(game.getQuestionNumber()));
       httpServletRequest.setAttribute("allPrizes", Prizes.PRIZES.getAllPrizes());
-      httpServletRequest.setAttribute("question", game.getProcessedQuestion());
+      httpServletRequest.setAttribute("question", game.getQuestionsList().get(game.getQuestionNumber()-1));
       httpServletRequest.getRequestDispatcher("/play.jsp").forward(httpServletRequest, httpServletResponse);
    }
 
    @Override
    protected void doPost(final HttpServletRequest httpServletRequest, final HttpServletResponse httpServletResponse) throws ServletException, IOException {
       final Game game = (Game) httpServletRequest.getSession().getAttribute("game");
-      if(Integer.parseInt(httpServletRequest.getParameter("answer")) == game.getProcessedQuestion().getCorrectAnswerNumber()){
+      if(Integer.parseInt(httpServletRequest.getParameter("answer")) == game.getQuestionsList().get(game.getQuestionNumber()-1).getCorrectAnswerNumber()){
          game.setCurrentPrize(Prizes.PRIZES.getPrize(game.getQuestionNumber()));
          game.setQuestionNumber(game.getQuestionNumber()+1);
          checkGuaranteedPrize(game);
