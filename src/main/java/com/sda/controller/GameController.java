@@ -33,6 +33,11 @@ public class GameController extends HttpServlet {
       final Game game = (Game) httpServletRequest.getSession().getAttribute("game");
       if(Integer.parseInt(httpServletRequest.getParameter("answer")) == game.getQuestionsList().get(game.getQuestionNumber()-1).getCorrectAnswerNumber()){
          game.setCurrentPrize(Prizes.PRIZES.getPrize(game.getQuestionNumber()));
+         if(game.getQuestionNumber()==12){
+            httpServletRequest.getSession().setAttribute("flag", "true");
+            httpServletResponse.sendRedirect("/end");
+            return;
+         }
          game.setQuestionNumber(game.getQuestionNumber()+1);
          checkGuaranteedPrize(game);
          httpServletResponse.sendRedirect("/game/play");

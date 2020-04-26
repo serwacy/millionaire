@@ -17,6 +17,8 @@ public class EndGameController extends HttpServlet {
          final Game game = (Game) httpServletRequest.getSession().getAttribute("game");
          httpServletRequest.setAttribute("prize", game.getCurrentPrize());
          httpServletRequest.getSession().invalidate();
+      } else {
+         httpServletRequest.setAttribute("prize", 0);
       }
       httpServletRequest.getSession().setAttribute("flag", "false");
       httpServletRequest.getRequestDispatcher("/end.jsp").forward(httpServletRequest, httpServletResponse);
