@@ -1,1 +1,1 @@
-web: java -jar target/dependency/webapp-runner.jar --port $PORT target/Servlets.war
+web: java -jar target/dependency/webapp-runner.jar target/Servlets.war
