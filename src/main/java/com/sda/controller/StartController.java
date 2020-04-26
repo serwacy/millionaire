@@ -23,6 +23,7 @@ public class StartController extends HttpServlet {
       final String playerName = httpServletRequest.getParameter("name");
       final Game game = GameFactory.create(playerName);
       httpServletRequest.getSession().setAttribute("game", game);
+      httpServletRequest.getSession().setAttribute("flag", "false");
       httpServletResponse.sendRedirect("/game/play");
    }
 }

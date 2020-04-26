@@ -1,6 +1,7 @@
 package com.sda.controller;
 
 import com.sda.model.Game;
+import com.sda.model.Lifeline;
 import com.sda.model.Prizes;
 import com.sda.service.QuestionService;
 
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
 
 @WebServlet(name = "GameController", value = "/game/play")
 public class GameController extends HttpServlet {
@@ -21,6 +23,7 @@ public class GameController extends HttpServlet {
 
       httpServletRequest.setAttribute("nextPrize", Prizes.PRIZES.getPrize(game.getQuestionNumber()));
       httpServletRequest.setAttribute("allPrizes", Prizes.PRIZES.getAllPrizes());
+      httpServletRequest.setAttribute("allLifelines", Arrays.asList(Lifeline.FIFTY_FIFTY, Lifeline.AUDIENCE));
       httpServletRequest.setAttribute("question", game.getQuestionsList().get(game.getQuestionNumber()-1));
       httpServletRequest.getRequestDispatcher("/play.jsp").forward(httpServletRequest, httpServletResponse);
    }
@@ -34,6 +37,7 @@ public class GameController extends HttpServlet {
          checkGuaranteedPrize(game);
          httpServletResponse.sendRedirect("/game/play");
       } else {
+         httpServletRequest.getSession().setAttribute("flag", "true");
          game.setCurrentPrize(game.getGuaranteedPrize());
          httpServletResponse.sendRedirect("/end");
       }

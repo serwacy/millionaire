@@ -7,6 +7,5 @@
       You have won: <strong>${requestScope.prize} PLN</strong>
    </div>
 </div>
-
 </body>
 </html>

@@ -34,20 +34,32 @@
             <li><p class="navbar-text">Current Prize: ${sessionScope.game.currentPrize}</p></li>
             <li><p class="navbar-text">Guaranteed Prize: ${sessionScope.game.guaranteedPrize}</p></li>
          </ul>
-         <c:forEach items="${sessionScope.game.lifelines}" var="lifeline">
-            <c:if test="${lifeline.toString()=='FIFTY_FIFTY'}">
-               <a href="#" class="btn btn-danger navbar-btn navbar-right" role="button"
-                  data-placement="bottom" data-trigger="focus"
-                  data-toggle="popover" title="Are you sure you want to use this lifeline"
-                  data-content="<a href='/game/lifelines?type=fifty-fifty'>YES</a>">FIFTY-FIFTY
-               </a>
+         <c:forEach items="${requestScope.allLifelines}" var="lifeline">
+            <c:if test="${sessionScope.game.lifelines.contains(lifeline)}">
+               <c:if test="${lifeline.toString()=='FIFTY_FIFTY'}">
+                  <a href="#" class="btn btn-danger navbar-btn navbar-right" role="button"
+                     data-placement="bottom" data-trigger="focus"
+                     data-toggle="popover" title="Are you sure you want to use this lifeline"
+                     data-content="<a href='/game/lifelines?type=fifty-fifty'>YES</a>">FIFTY-FIFTY
+                  </a>
+               </c:if>
+               <c:if test="${lifeline.toString()=='AUDIENCE'}">
+                  <a href="#" class="btn btn-danger navbar-btn navbar-right" role="button"
+                     data-placement="bottom" data-trigger="focus"
+                     data-toggle="popover" title="Are you sure you want to use this lifeline"
+                     data-content="<a href='/game/lifelines?type=audience'>YES</a>">AUDIENCE
+                  </a>
+               </c:if>
             </c:if>
-            <c:if test="${lifeline.toString()=='AUDIENCE'}">
-               <a href="#" class="btn btn-danger navbar-btn navbar-right" role="button"
-                  data-placement="bottom" data-trigger="focus"
-                  data-toggle="popover" title="Are you sure you want to use this lifeline"
-                  data-content="<a href='/game/lifelines?type=audience'>YES</a>">AUDIENCE
-               </a>
+            <c:if test="${!sessionScope.game.lifelines.contains(lifeline)}">
+               <button class="btn btn-danger navbar-btn navbar-right" role="button" disabled>
+                  <c:if test="${lifeline.toString()=='FIFTY_FIFTY'}">
+                     FIFTY-FIFTY
+                  </c:if>
+                  <c:if test="${lifeline.toString()=='AUDIENCE'}">
+                     AUDIENCE
+                  </c:if>
+               </button>
             </c:if>
          </c:forEach>
       </div>
@@ -117,7 +129,7 @@
          <a href="#" class="btn btn-danger" role="button"
             data-placement="bottom" data-trigger="focus"
             data-toggle="popover" title="Are you sure you want to forfeit"
-            data-content="<a href='/end'>YES</a>">Forfeit
+            data-content="<a href='/game/forfeit'>YES</a>">Forfeit
          </a>
       </div>
    </form>
@@ -130,13 +142,13 @@
              .siblings().removeClass('btn-pressed').addClass('btn-unpressed');
       });
    });
-   $(document).ready(function(){
-      $(".btn-unpressed").click(function(){
+   $(document).ready(function () {
+      $(".btn-unpressed").click(function () {
          $(".btn-submit").prop('disabled', false);
       });
    });
-   $(document).ready(function(){
-      $('[data-toggle="popover"]').popover({html:true, container: 'body'});
+   $(document).ready(function () {
+      $('[data-toggle="popover"]').popover({html: true, container: 'body'});
    });
 </script>
 
