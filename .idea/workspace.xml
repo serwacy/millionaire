@@ -7,42 +7,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8ef3fca8-779b-4af5-aebf-37a65f852b1b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Procfile" beforeDir="false" afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sda/controller/EndGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sda/controller/EndGameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sda/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sda/controller/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/webapp/jsp/WEB-INF/classes/com/sda/controller/EndGameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/webapp/jsp/WEB-INF/classes/com/sda/controller/EndGameController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/webapp/jsp/WEB-INF/classes/com/sda/controller/GameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/webapp/jsp/WEB-INF/classes/com/sda/controller/GameController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Servlets.war" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Servlets/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/servletsSDA-master.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/sda/controller/EndGameController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/sda/controller/ForfeitController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/sda/controller/GameController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/sda/controller/HomePageController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/sda/controller/LifelinesController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/sda/controller/StartController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/sda/filter/AuthenticationFilter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/sda/model/ConvertedQuestion$ConvertedQuestionBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/sda/model/ConvertedQuestion.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/sda/model/Difficulty.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/sda/model/Game$GameBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/sda/model/Game.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/sda/model/Lifeline.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/sda/model/Prizes.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/sda/model/Question$QuestionBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/sda/model/Question.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/sda/repository/GameFactory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/sda/repository/QuestionRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/sda/service/QuestionService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/sda/utils/JsonReader.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/sda/utils/LifelineUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/sda/utils/QuestionAdapter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
