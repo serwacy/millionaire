@@ -1,7 +1,6 @@
 package com.sda.service;
 
 import com.sda.model.ConvertedQuestion;
-import com.sda.model.Game;
 import com.sda.model.Question;
 import com.sda.repository.QuestionRepository;
 import com.sda.utils.QuestionAdapter;

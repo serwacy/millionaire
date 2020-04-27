@@ -1,7 +1,5 @@
 package com.sda.controller;
 
-import com.sda.model.Game;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

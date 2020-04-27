@@ -3,7 +3,6 @@ package com.sda.controller;
 import com.sda.model.Game;
 import com.sda.model.Lifeline;
 import com.sda.model.Prizes;
-import com.sda.service.QuestionService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,8 +14,6 @@ import java.util.Arrays;
 
 @WebServlet(name = "GameController", value = "/game/play")
 public class GameController extends HttpServlet {
-   private QuestionService questionService = QuestionService.getInstance();
-
    @Override
    protected void doGet(final HttpServletRequest httpServletRequest, final HttpServletResponse httpServletResponse) throws ServletException, IOException {
       final Game game = (Game) httpServletRequest.getSession().getAttribute("game");

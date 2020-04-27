@@ -1,7 +1,7 @@
 package com.sda.controller;
 
 import com.sda.model.Game;
-import com.sda.repository.GameFactory;
+import com.sda.service.GameFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
