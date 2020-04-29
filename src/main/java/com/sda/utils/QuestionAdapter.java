@@ -1,6 +1,7 @@
 package com.sda.utils;
 
 import com.sda.model.ConvertedQuestion;
+import com.sda.model.Difficulty;
 import com.sda.model.Question;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -26,6 +27,7 @@ public class QuestionAdapter {
               .questionContent(question.getQuestion())
               .answers(organizeAnswers(question, correctAnswerNumber))
               .correctAnswerNumber(correctAnswerNumber)
+              .difficulty(Difficulty.parseDiff(question.getDifficulty()))
               .build();
    }
 
@@ -39,9 +41,9 @@ public class QuestionAdapter {
       int incorrectAnswersMarker = 0;
       for (int idx = 0; idx < 4; idx++) {
          if(idx == correctAnswerNumber){
-            answers.add(question.correctAnswer);
+            answers.add(question.getCorrectAnswer());
          } else {
-            answers.add(question.incorrectAnswers.get(incorrectAnswersMarker));
+            answers.add(question.getIncorrectAnswers().get(incorrectAnswersMarker));
             incorrectAnswersMarker++;
          }
       }

@@ -24,15 +24,15 @@ import java.util.List;
 })
 public class Question {
    @JsonProperty("category")
-   public String category;
+   private String category;
    @JsonProperty("type")
-   public String type;
+   private String type;
    @JsonProperty("difficulty")
-   public String difficulty;
+   private String difficulty;
    @JsonProperty("question")
-   public String question;
+   private String question;
    @JsonProperty("correct_answer")
-   public String correctAnswer;
+   private String correctAnswer;
    @JsonProperty("incorrect_answers")
-   public List<String> incorrectAnswers = null;
+   private List<String> incorrectAnswers = null;
 }

@@ -15,4 +15,5 @@ public class ConvertedQuestion {
    private String questionContent;
    private List<String> answers;
    private int correctAnswerNumber;
+   private Difficulty difficulty;
 }

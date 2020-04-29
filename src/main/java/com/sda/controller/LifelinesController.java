@@ -23,7 +23,7 @@ public class LifelinesController extends HttpServlet {
       }
       if(type.equals("audience")){
          game.getLifelines().remove(Lifeline.AUDIENCE);
-         LifelineUtils.useAudienceLifeline(game);
+         LifelineUtils.useAudienceLifeline(game.getQuestionsList().get(game.getQuestionNumber()-1));
       }
       httpServletResponse.sendRedirect("/game/play");
    }

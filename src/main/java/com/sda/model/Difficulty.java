@@ -14,4 +14,17 @@ public enum Difficulty {
    public String getUrl() {
       return url;
    }
+
+   public static Difficulty parseDiff(final String input){
+      switch (input) {
+         case "easy":
+            return Difficulty.EASY;
+         case "medium":
+            return Difficulty.MEDIUM;
+         case "hard":
+            return Difficulty.HARD;
+         default:
+            return null;
+      }
+   }
 }
