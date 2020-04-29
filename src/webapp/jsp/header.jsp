@@ -40,12 +40,12 @@
          <a class="navbar-brand" href="#">Who wants to be a Millionaire</a>
       </div>
       <ul class="nav navbar-nav">
-         <li><a href="/best">Best scores</a></li>
-         <c:if test="${sessionScope.game.active}">
+         <li><a href="/winnings">Winnings</a></li>
+         <c:if test="${sessionScope.game != null}">
             <li><a href="/game/play">Continue</a></li>
             <li><a href="/start">New game</a></li>
          </c:if>
-         <c:if test="${!sessionScope.game.active}">
+         <c:if test="${sessionScope.game == null}">
             <li><a href="/start">Start</a></li>
          </c:if>
       </ul>

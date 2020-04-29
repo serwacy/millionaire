@@ -1,5 +1,7 @@
 package com.sda.filter;
 
+import com.sda.model.Game;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -18,8 +20,8 @@ public class AuthenticationFilter implements Filter {
    public void doFilter(final ServletRequest servletRequest, final ServletResponse servletResponse, final FilterChain filterChain) throws IOException, ServletException {
       final HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
       final HttpServletResponse httpServletResponse= (HttpServletResponse) servletResponse;
-      final Object game = httpServletRequest.getSession().getAttribute("game");
-      if(game == null) {
+      final Game game = (Game) httpServletRequest.getSession().getAttribute("game");
+      if(game == null || !game.isActive()) {
          System.out.println("Game does not exist! Redirecting.");
          httpServletResponse.sendRedirect("/");
       } else {

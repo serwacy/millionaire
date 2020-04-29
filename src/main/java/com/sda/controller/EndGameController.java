@@ -13,14 +13,9 @@ import java.io.IOException;
 public class EndGameController extends HttpServlet {
    @Override
    protected void doGet(final HttpServletRequest httpServletRequest, final HttpServletResponse httpServletResponse) throws ServletException, IOException {
-      if(httpServletRequest.getSession().getAttribute("flag").toString().equals("true")) {
-         final Game game = (Game) httpServletRequest.getSession().getAttribute("game");
-         httpServletRequest.setAttribute("prize", game.getCurrentPrize());
-         httpServletRequest.getSession().invalidate();
-      } else {
-         httpServletRequest.setAttribute("prize", 0);
-      }
-      httpServletRequest.getSession().setAttribute("flag", "false");
+      final Game game = (Game) httpServletRequest.getSession().getAttribute("game");
+      game.setActive(false);
+      httpServletRequest.setAttribute("prize", game.getCurrentPrize());
       httpServletRequest.getRequestDispatcher("/end.jsp").forward(httpServletRequest, httpServletResponse);
    }
 }
