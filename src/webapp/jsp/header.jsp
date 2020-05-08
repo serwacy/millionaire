@@ -20,6 +20,11 @@
          color: #000000;
          border-color: black;
       }
+      .btn-correct {
+         background-color: #5cff5d;
+         color: #000000;
+         border-color: black;
+      }
       .unanswered {
          background-color: #2961d9;
       }

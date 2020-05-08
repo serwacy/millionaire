@@ -4,7 +4,7 @@
 
 <div class="container">
    <div class="alert alert-info">
-      You have won: <strong>${requestScope.prize} PLN</strong>
+      You have won: <strong>${sessionScope.game.currentPrize} PLN</strong>
    </div>
 </div>
 </body>

@@ -75,49 +75,49 @@
       <div class="row">
          <div class="btn-group-toggle btn-group-vertical col-sm-8 col-md-12" data-toggle="buttons">
             <c:if test="${requestScope.question.answers.get(0).equals('')}">
-               <label class="btn btn-unpressed btn-block btn-lg disabled" for="0">
+               <label class="btn btn-answer btn-unpressed btn-block btn-lg disabled 0" for="0">
                   <input type="radio" name="answer" id="0" value="0" autocomplete="off">
                   A: ${requestScope.question.answers.get(0)}
                </label>
             </c:if>
             <c:if test="${!requestScope.question.answers.get(0).equals('')}">
-               <label class="btn btn-unpressed btn-block btn-lg" for="0">
+               <label class="btn btn-answer btn-unpressed btn-block btn-lg 0" for="0">
                   <input type="radio" name="answer" id="0" value="0" autocomplete="off">
                   A: ${requestScope.question.answers.get(0)}
                </label>
             </c:if>
             <c:if test="${requestScope.question.answers.get(1).equals('')}">
-               <label class="btn btn-unpressed btn-block btn-lg disabled" for="1">
+               <label class="btn btn-answer btn-unpressed btn-block btn-lg disabled 1" for="1">
                   <input type="radio" name="answer" id="1" value="1" autocomplete="off">
                   B: ${requestScope.question.answers.get(1)}
                </label>
             </c:if>
             <c:if test="${!requestScope.question.answers.get(1).equals('')}">
-               <label class="btn btn-unpressed btn-block btn-lg" for="1">
+               <label class="btn btn-answer btn-unpressed btn-block btn-lg 1" for="1">
                   <input type="radio" name="answer" id="1" value="1" autocomplete="off">
                   B: ${requestScope.question.answers.get(1)}
                </label>
             </c:if>
             <c:if test="${requestScope.question.answers.get(2).equals('')}">
-               <label class="btn btn-unpressed btn-block btn-lg disabled" for="2">
+               <label class="btn btn-answer btn-unpressed btn-block btn-lg disabled 2" for="2">
                   <input type="radio" name="answer" id="2" value="2" autocomplete="off">
                   C: ${requestScope.question.answers.get(2)}
                </label>
             </c:if>
             <c:if test="${!requestScope.question.answers.get(2).equals('')}">
-               <label class="btn btn-unpressed btn-block btn-lg" for="2">
+               <label class="btn btn-answer btn-unpressed btn-block btn-lg 2" for="2">
                   <input type="radio" name="answer" id="2" value="2" autocomplete="off">
                   C: ${requestScope.question.answers.get(2)}
                </label>
             </c:if>
             <c:if test="${requestScope.question.answers.get(3).equals('')}">
-               <label class="btn btn-unpressed btn-block btn-lg disabled" for="3">
+               <label class="btn btn-answer btn-unpressed btn-block btn-lg disabled 3" for="3">
                   <input type="radio" name="answer" id="3" value="3" autocomplete="off">
                   D: ${requestScope.question.answers.get(3)}
                </label>
             </c:if>
             <c:if test="${!requestScope.question.answers.get(3).equals('')}">
-               <label class="btn btn-unpressed btn-block btn-lg" for="3">
+               <label class="btn btn-answer btn-unpressed btn-block btn-lg 3" for="3">
                   <input type="radio" name="answer" id="3" value="3" autocomplete="off">
                   D: ${requestScope.question.answers.get(3)}
                </label>
@@ -136,6 +136,16 @@
 </div>
 
 <script>
+   $('form').submit(function () {
+      return showCorrectAnswer(this);
+   });
+   function showCorrectAnswer(form) {
+      $(document).ready(function () {
+         $("."+${requestScope.question.correctAnswerNumber}).addClass('btn-correct');
+      });
+      setTimeout(function() {form.submit()}, 3000);
+      return false;
+   }
    $(document).ready(function () {
       $('label').click(function () {
          $(this).addClass('btn-pressed').removeClass('btn-unpressed')
