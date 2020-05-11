@@ -13,17 +13,19 @@ import java.io.IOException;
 
 @WebServlet(name = "LifelinesController", value = "/game/lifelines")
 public class LifelinesController extends HttpServlet {
+   private LifelineUtils lifelineUtils = LifelineUtils.getInstance();
+
    @Override
    protected void doGet(final HttpServletRequest httpServletRequest, final HttpServletResponse httpServletResponse) throws ServletException, IOException {
       final String type = httpServletRequest.getParameter("type");
       final Game game = (Game) httpServletRequest.getSession().getAttribute("game");
       if(type.equals("fifty-fifty")){
          game.getLifelines().remove(Lifeline.FIFTY_FIFTY);
-         LifelineUtils.useFiftyFiftyLifeline(game.getQuestionsList().get(game.getQuestionNumber()-1));
+         lifelineUtils.useFiftyFiftyLifeline(game.getQuestionsList().get(game.getQuestionNumber()-1));
       }
       if(type.equals("audience")){
          game.getLifelines().remove(Lifeline.AUDIENCE);
-         LifelineUtils.useAudienceLifeline(game.getQuestionsList().get(game.getQuestionNumber()-1));
+         lifelineUtils.useAudienceLifeline(game.getQuestionsList().get(game.getQuestionNumber()-1));
       }
       httpServletResponse.sendRedirect("/game/play");
    }

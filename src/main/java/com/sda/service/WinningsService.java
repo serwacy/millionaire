@@ -19,8 +19,8 @@ public class WinningsService {
       return winningsService;
    }
 
-   public boolean addWinning(final Winning winning){
-      return winningsRepository.addWinning(winning);
+   public void addWinning(final Winning winning){
+      winningsRepository.addWinning(winning);
    }
 
    public List<Winning> getAll(){

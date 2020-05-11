@@ -136,6 +136,7 @@
 </div>
 
 <script>
+<%--   script used for showing correct answer after submitting --%>
    $('form').submit(function () {
       return showCorrectAnswer(this);
    });
@@ -146,17 +147,23 @@
       setTimeout(function() {form.submit()}, 3000);
       return false;
    }
+
+<%--   script used for setting button styles on chosen answer --%>
    $(document).ready(function () {
       $('label').click(function () {
          $(this).addClass('btn-pressed').removeClass('btn-unpressed')
              .siblings().removeClass('btn-pressed').addClass('btn-unpressed');
       });
    });
+
+<%--   script used for enabling submit answer button only after picking any answer --%>
    $(document).ready(function () {
       $(".btn-unpressed").click(function () {
          $(".btn-submit").prop('disabled', false);
       });
    });
+
+<%--   popovers --%>
    $(document).ready(function () {
       $('[data-toggle="popover"]').popover({html: true, container: 'body'});
    });

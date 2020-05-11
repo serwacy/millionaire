@@ -21,8 +21,8 @@ public class WinningsRepository {
       return winningsRepository;
    }
 
-   public boolean addWinning(final Winning winning){
-      return winnings.add(winning);
+   public void addWinning(final Winning winning){
+      winnings.add(winning);
    }
 
    public List<Winning> getAll(){
